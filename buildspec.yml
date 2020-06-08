@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - mvn sonar:sonar -Dsonar.login=0d01a200a2155c96e0fe7ac330ce9c27fbfaefcf -Dsonar.host.url=http://3.16.137.88:9000
