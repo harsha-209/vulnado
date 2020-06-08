@@ -18,5 +18,6 @@ phases:
       - docker build -t $REPOSITORY_URI:success .
   post_build:
     commands:
+      - trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL --auto-refresh $REPOSITORY_URI:success
       - trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL $REPOSITORY_URI:success
       - docker push $REPOSITORY_URI:success
